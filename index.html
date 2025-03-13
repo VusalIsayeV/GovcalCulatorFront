@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radiotezlik Forması</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Radiotezlik Forması</h2>
+        <form>
+            <!-- Radio seçim düyməsi -->
+            <label for="odenisTipi">Ödəniş tipi</label>
+            <div class="input-group">
+                <label><input type="radio" name="odenisTipi" value="birdəfəlik" onclick="toggleInputs()"> Birdəfəlik
+                    Ödəniş</label>
+                <label><input type="radio" name="odenisTipi" value="müddətli" onclick="toggleInputs()"> Müddətli
+                    Ödəniş</label>
+            </div>
+
+            <!-- Birdəfəlik ödəniş üçün sahələr -->
+            <div id="birdəfəlikOdenis" style="display:none;">
+                <label for="istifadeciQrupu">İstifadəçi qrupu</label>
+                <div class="input-group">
+                    <select id="istifadeciQrupu">
+                        <option value="">İstifadəçi qrupunu seçin</option>
+                    </select>
+                    <span class="emsal">A1</span>
+                </div>
+
+                <label for="xidmetNovu">Xidmət növü</label>
+                <div class="input-group">
+                    <select id="xidmetNovu">
+                        <option value="radio">Radio yayımı (FM)</option>
+                    </select>
+                    <span class="emsal">A2</span>
+                </div>
+
+                <label for="odenisDeyeri">Birdəfəlik ödəniş üzrə sabit dəyər kəmiyyəti</label>
+                <div class="input-group">
+                    <input type="text" id="odenisDeyeri" disabled value="50">
+                    <span class="emsal">B1</span>
+                </div>
+
+                <label for="radioTezlikSayi">Radiotezliklərin sayı (ədəd)</label>
+                <div class="input-group">
+                    <input type="number" id="radioTezlikSayi" value="1">
+                    <span class="emsal">B2</span>
+                </div>
+
+                <label for="zolaqEmsali">Radiotezlik kanalının zolaq genişliyini nəzərə alan əmsal</label>
+                <div class="input-group">
+                    <input type="text" id="zolaqEmsali" disabled value="8">
+                    <span class="emsal">B3</span>
+                </div>
+
+                <label for="coğrafiEmsal">Radiotezliyin istifadə olunduğu coğrafi ərazini nəzərə alan əmsal</label>
+                <div class="input-group">
+                    <select id="coğrafiEmsal">
+                        <option value="">Seçim edin</option>
+                    </select>
+                    <span class="emsal">B4</span>
+                </div>
+
+                <label for="ehmiyyetlilikEmsali">Radiotezlik zolağının əhəmiyyətlilik əmsalı</label>
+                <div class="input-group">
+                    <input type="text" id="ehmiyyetlilikEmsali" disabled value="0.8">
+                    <span class="emsal">B5</span>
+                </div>
+            </div>
+
+            <!-- Müddətli ödəniş üçün sahələr -->
+            <div id="müddətliOdenis" style="display:none;">
+                <label for="istifadeciQrupuM">İstifadəçi qrupu</label>
+                <div class="input-group">
+                    <select id="istifadeciQrupuM">
+                        <option value="">İstifadəçi qrupunu seçin</option>
+                    </select>
+                    <span class="emsal">C1</span>
+                </div>
+
+                <label for="serviceType">Xidmət növü</label>
+                <div class="input-group">
+                    <select id="serviceType">
+                        <option value="0">Standart Xidmət</option>
+                        <option value="1">QHs Xidmət</option>
+                    </select>
+                </div>
+                <div id="dynamicInputs"></div>
+
+                <label for="odenisDeyeriM">Sabit dəyər kəmiyyəti</label>
+                <div class="input-group">
+                    <select id="odenisDeyeriM">
+                        <option value="1">Sabit dəyər kəmiyyəti 1</option>
+                        <option value="2">Sabit dəyər kəmiyyəti 2</option>
+                    </select>
+                    <span class="emsal">C3</span>
+                </div>
+
+                <label for="revSayi">REV-lərin sayı</label>
+                <div class="input-group">
+                    <input type="number" id="revSayi">
+                    <span class="emsal">C4</span>
+                </div>
+
+                <label for="zolaqGensliyi">Radiotezlik nominalının zolaq genişliyi, MHs</label>
+                <div class="input-group">
+                    <select id="zolaqGensliyi">
+                        <option value="1">1 MHz</option>
+                        <option value="2">2 MHz</option>
+                    </select>
+                    <span class="emsal">C5</span>
+                </div>
+
+                <label for="coğrafiEmsalM">Coğrafi ərazi əmsalı</label>
+                <div class="input-group">
+                    <select id="coğrafiEmsalM">
+                        <option value="1">Ərazi 1</option>
+                        <option value="2">Ərazi 2</option>
+                    </select>
+                    <span class="emsal">C6</span>
+                </div>
+
+                <label for="revSualandirici">REV-in şüalandırdığı ərazinin sahəsini nəzərə alan əmsal</label>
+                <div class="input-group">
+                    <select id="revSualandirici">
+                        <option value="1">Əmsal 1</option>
+                        <option value="2">Əmsal 2</option>
+                    </select>
+                    <span class="emsal">C7</span>
+                </div>
+
+                <label for="tekanSahesi">Radio yayımı (OD, QD) ötürücüsünün gücü (Vt)</label>
+                <div class="input-group">
+                    <input type="text" id="tekanSahesi">
+                    <span class="emsal">C8</span>
+                </div>
+
+                <label for="tezlikEmsali">Tezlik zolağının əhəmiyyətlilik əmsalı</label>
+                <div class="input-group">
+                    <select id="tezlikEmsali">
+                        <option value="1">Əmsal 1</option>
+                        <option value="2">Əmsal 2</option>
+                    </select>
+                    <span class="emsal">C9</span>
+                </div>
+
+                <label for="radiotezlikTexnologiya">Radiotezliklərə köklənmiş REV-lərin texnologiyasını nəzərə alan
+                    əmsal</label>
+                <div class="input-group">
+                    <select id="radiotezlikTexnologiya">
+                        <option value="1">Texnologiya 1</option>
+                        <option value="2">Texnologiya 2</option>
+                    </select>
+                    <span class="emsal">C10</span>
+                </div>
+
+                <label for="tarixAraligi">Tarix aralığı</label>
+                <div class="input-group">
+                    <select id="tarixAraligi">
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                    </select>
+                    <span class="emsal">C11</span>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit">Hesabla</button>
+                <button type="reset">Sıfırla</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleInputs() {
+            var birdəfəlikOdenis = document.getElementById('birdəfəlikOdenis');
+            var müddətliOdenis = document.getElementById('müddətliOdenis');
+            var odenisTipi = document.querySelector('input[name="odenisTipi"]:checked').value;
+
+            if (odenisTipi === 'birdəfəlik') {
+                birdəfəlikOdenis.style.display = 'block';
+                müddətliOdenis.style.display = 'none';
+            } else if (odenisTipi === 'müddətli') {
+                müddətliOdenis.style.display = 'block';
+                birdəfəlikOdenis.style.display = 'none';
+            }
+        }
+        document.getElementById("serviceType").addEventListener("change", function () {
+            const dynamicInputs = document.getElementById("dynamicInputs");
+            dynamicInputs.innerHTML = ""; // Əvvəlki inputları sil
+
+            if (this.value === "1") {
+                const ranges = [
+                    "694 MHs - 2.7 QHs (daxil)",
+                    "2.7 QHs - 10 QHs (daxil)",
+                    "10 QHs - 20 QHs (daxil)",
+                    "20 QHs - 26.5 QHs (daxil)",
+                    "26.5 QHs - 40 QHs (daxil)",
+                    "40 QHs - 50 QHs (daxil)",
+                    "50 QHs - 300 QHs (daxil)"
+                ];
+
+                ranges.forEach((range, index) => {
+                    const div = document.createElement("div");
+                    div.className = "input-group";
+
+                    const label = document.createElement("label");
+                    label.textContent = range;
+
+                    const input = document.createElement("input");
+                    input.type = "number";
+                    input.placeholder = `Məbləğ daxil edin (${range})`;
+
+                    const span = document.createElement("span");
+                    span.className = "emsal";
+                    span.textContent = `C${11 + index}`; // C11-dən başlayaraq artır
+
+                    div.appendChild(label);
+                    div.appendChild(input);
+                    div.appendChild(span); // Əmsalı əlavə edirik
+
+                    dynamicInputs.appendChild(div);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
