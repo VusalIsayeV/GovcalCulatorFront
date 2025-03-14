@@ -139,3 +139,44 @@ button[type="reset"]:hover {
         margin-bottom: 10px;
     }
 }
+
+#input2{
+    display: none;
+}
+.price-box {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Distribute elements evenly */
+    align-items: center; /* Align items vertically in the center */
+    border: 2px solid #333; /* Border around the whole box */
+    padding: 10px;
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+    box-sizing: border-box;
+}
+
+#price {
+    margin: 0;
+    padding: 12px 59px;
+    border-radius: 1rem;
+    background-color: #d4f1c2; /* Light green background for price */
+    border: 1px solid #8bc34a; /* Green border */
+}
+
+#price-tax {
+    margin: 0;
+    padding: 12px 59px;
+    border-radius: 1rem;
+    background-color: #ffeb3b; /* Yellow background for tax */
+    border: 1px solid #fbc02d; /* Yellow border */
+}
+
+#price-sum {
+    margin: 0;
+    padding: 12px 59px;
+    border-radius: 1rem;
+    background-color: #ff7043; /* Light red background for total sum */
+    border: 1px solid #f44336; /* Red border */
+}
