@@ -39,7 +39,7 @@ function toggleInputs() {
                 })
                 .catch(error => console.error('Error fetching User Group data:', error));
 
-            fetch('http://127.0.0.1:8000/api/ServiceType')
+            fetch('http://127.0.0.1:8000/api/ServiceType?payment_type_id=1')
                 .then(response => response.json())
                 .then(data => {
                     const userGroupSelect = document.getElementById('xidmetNovu');
@@ -168,7 +168,7 @@ function toggleInputs() {
         müddətliOdenis.style.display = 'block';
         birdəfəlikOdenis.style.display = 'none';
 
-        fetch('http://127.0.0.1:8000/api/ServiceType')
+        fetch('http://127.0.0.1:8000/api/ServiceType?payment_type_id=2')
             .then(response => response.json())
             .then(data => {
                 const userGroupSelect = document.getElementById('serviceType');
