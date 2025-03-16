@@ -59,7 +59,7 @@
                 <label for="coğrafiEmsal">Radiotezlik kanalının coğrafi ərazini nəzərə alan əmsal</label>
                 <div class="input-group">
                     <select id="coğrafiEmsal">
-                        <option value="">Seçim edin</option>
+                        <option value="" disabled>Seçim edin</option>
                     </select>
                     <span class="emsal" id="b4Label">B4</span>
                 </div>
@@ -76,8 +76,7 @@
                 <label for="serviceType">Xidmət növü</label>
                 <div class="input-group">
                     <select id="serviceType">
-                        <option value="1">Standart Xidmət</option>
-                        <option value="2">QHs Xidmət</option>
+                        <option value="0" disabled>Secim edin</option>
                     </select>
                 </div>
                 <div id="input1">
@@ -88,19 +87,19 @@
                         <select id="istifadeciQrupuM">
                             <option value="">İstifadəçi qrupunu seçin</option>
                         </select>
-                        <span class="emsal" id="istifadeciQrupuSpanM">C1</span>
+                        <span class="emsal" id="istifadeciQrupuSpanM"></span>
                     </div>
 
                     <label for="odenisDeyeriM">Birdəfəlik ödəniş üzrə sabit dəyər kəmiyyəti</label>
                     <div class="input-group">
-                        <input type="text" id="odenisDeyeriM" dataid="" disabled value="50">
-                        <span class="emsal" id="m1Label">m1</span>
+                        <input type="text" id="odenisDeyeriM" dataid="" disabled value="secim edin">
+                        <span class="emsal" id="m1Label">M1</span>
                     </div>
 
                     <label for="revSayi">REV-lərin sayı</label>
                     <div class="input-group">
                         <input type="number" id="revSayi">
-                        <span class="emsal">M2</span>
+                        <span class="emsal" id="m2Label">M2</span>
                     </div>
 
                     <label for="zolaqGensliyi">Radiotezlik nominalının zolaq genişliyi, MHs</label>
@@ -112,10 +111,9 @@
                     <label for="coğrafiEmsalM">Coğrafi ərazi əmsalı</label>
                     <div class="input-group">
                         <select id="coğrafiEmsalM">
-                            <option value="1">Ərazi 1</option>
-                            <option value="2">Ərazi 2</option>
+                            <option value="0" disabled>Secim edin</option>
                         </select>
-                        <span class="emsal">M4</span>
+                        <span class="emsal" id="m4Label">M4</span>
                     </div>
 
                     <label for="revSualandirici">REV-in şüalandırdığı ərazinin sahəsini nəzərə alan əmsal</label>
@@ -124,39 +122,26 @@
                         <span class="emsal" id="m5Label">M5</span>
                     </div>
 
-                    <label for="tekanSahesi">Radio yayımı (OD, QD) ötürücüsünün gücü (Vt)</label>
+                    <label for="tekanSahesi">Tezlik zolağının əhəmiyyətlilik əmsalı</label>
                     <div class="input-group">
-                        <input type="text" id="tekanSahesi">
-                        <span class="emsal">M6</span>
+                        <select id="tekanSahesi">
+                            <option value="" disabled>Secim edin</option>
+                        </select>
+                        <span class="emsal" id="m6Label">M6</span>
                     </div>
 
-                    <label for="tezlikEmsali">Tezlik zolağının əhəmiyyətlilik əmsalı</label>
+                    <label for="tezlikEmsali">Radiotezliklərə köklənmiş REV-lərin texnologiyasını nəzərə alan əmsal</label>
                     <div class="input-group">
-                        <select id="tezlikEmsali">
-                            <option value="1">Əmsal 1</option>
-                            <option value="2">Əmsal 2</option>
-                        </select>
-                        <span class="emsal">M7</span>
+                        <input type="text" id="tezlikEmsali" dataid="" value="" disabled>
+                        <span class="emsal" id="m7Label">M7</span>
                     </div>
 
-                    <label for="radiotezlikTexnologiya">Radiotezliklərə köklənmiş REV-lərin texnologiyasını nəzərə alan
-                        əmsal</label>
+                    <label for="tarixAraligi">Radiotezliklərə köklənmiş REV-lərin texnologiyasını nəzərə alan əmsal</label>
                     <div class="input-group">
-                        <select id="radiotezlikTexnologiya">
-                            <option value="1">Texnologiya 1</option>
-                            <option value="2">Texnologiya 2</option>
-                        </select>
-                        <span class="emsal">C10</span>
+                        <input type="text" id="tarixAraligi" dataid="" value="">
+                        <span class="emsal" id="m8Label">M8</span>
                     </div>
 
-                    <label for="tarixAraligi">Tarix aralığı</label>
-                    <div class="input-group">
-                        <select id="tarixAraligi">
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
-                        </select>
-                        <span class="emsal">C11</span>
-                    </div>
                 </div>
                 <div id="input2">
                     <h3>Ayrılmış sellülar radiotezlik zolağı (ZG sel), MHs</h3>
@@ -239,13 +224,10 @@
                     </div>
 
                     <h3>Tarix Araligi</h3>
-                    <label for="tarixAraligi">Tarix aralığı</label>
+                    <label for="tarixAraligiS">Radiotezliklərə köklənmiş REV-lərin texnologiyasını nəzərə alan əmsal</label>
                     <div class="input-group">
-                        <select id="tarixAraligi">
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
-                        </select>
-                        <span class="emsal">C11</span>
+                        <input type="text" id="tarixAraligiS" dataid="" value="">
+                        <span class="emsal" id="TLabel">T</span>
                     </div>
 
                     <h3>Radiotezlik zolağının əhəmiyyətlilik əmsalı (ZƏ)</h3>
@@ -253,38 +235,38 @@
                     <hr>
                     <label for="ZE1">694 MHs - 2.7 QHs (daxil)</label>
                     <div class="input-group">
-                        <input type="text" id="ZE1" placeholder="694 MHs - 2.7 QHs (daxil)">
-                        <span class="emsal">B2</span>
+                        <input type="text" id="ZE1" placeholder="694 MHs - 2.7 QHs (daxil)" disabled value="1">
+                        <span class="emsal">ZE1 1</span>
                     </div>
                     <label for="ZE2">2.7 QHs - 10 QHs (daxil)</label>
                     <div class="input-group">
-                        <input type="text" id="ZE2" placeholder="2.7 QHs - 10 QHs (daxil)">
-                        <span class="emsal">B2</span>
+                        <input type="text" id="ZE2" placeholder="2.7 QHs - 10 QHs (daxil)" disabled value="0.90">
+                        <span class="emsal">ZE2 0.90</span>
                     </div>
                     <label for="ZE3">10 QHs - 20 QHs (daxil)</label>
                     <div class="input-group">
-                        <input type="text" id="ZE3" placeholder="10 QHs - 20 QHs (daxil)">
-                        <span class="emsal">B2</span>
+                        <input type="text" id="ZE3" placeholder="10 QHs - 20 QHs (daxil)" disabled value="0.70">
+                        <span class="emsal">ZE3 0.70</span>
                     </div>
                     <label for="ZE4">20 QHs - 26.5 QHs (daxil)</label>
                     <div class="input-group">
-                        <input type="text" id="ZE4" placeholder="20 QHs - 26.5 QHs (daxil)">
-                        <span class="emsal">B2</span>
+                        <input type="text" id="ZE4" placeholder="20 QHs - 26.5 QHs (daxil)" disabled value="0.60">
+                        <span class="emsal">ZE4 0.60</span>
                     </div>
                     <label for="ZE5">26.5 QHs - 40 QHs (daxil)</label>
                     <div class="input-group">
-                        <input type="text" id="ZE5" placeholder="26.5 QHs - 40 QHs (daxil)">
-                        <span class="emsal">B2</span>
+                        <input type="text" id="ZE5" placeholder="26.5 QHs - 40 QHs (daxil)" disabled value="0.30">
+                        <span class="emsal">ZE5 0.30</span>
                     </div>
                     <label for="ZE6">40 QHs - 50 QHs (daxil)</label>
                     <div class="input-group">
-                        <input type="text" id="ZE6" placeholder="40 QHs - 50 QHs (daxil)">
-                        <span class="emsal">B2</span>
+                        <input type="text" id="ZE6" placeholder="40 QHs - 50 QHs (daxil)" disabled value="0.20">
+                        <span class="emsal">ZE6 0.20</span>
                     </div>
                     <label for="ZE7">50 QHs - 300 QHs (daxil)</label>
                     <div class="input-group">
-                        <input type="text" id="ZE7" placeholder="50 QHs - 300 QHs (daxil)">
-                        <span class="emsal">B2</span>
+                        <input type="text" id="ZE7" placeholder="50 QHs - 300 QHs (daxil)" disabled value="0.08">
+                        <span class="emsal">ZE7 0.08</span>
                     </div>
 
                     <h3>Digər əmsallar</h3>
@@ -293,17 +275,17 @@
 
                     <label for="sd">Sabit dəyər kəmiyyəti</label>
                     <div class="input-group">
-                        <input type="text" id="sd">
+                        <input type="text" id="sd" disabled value="600">
                     </div>
 
                     <label for="tes">Tə (sellülar)</label>
                     <div class="input-group">
-                        <input type="text" id="tes">
+                        <input type="text" id="tes" disabled value="100">
                     </div>
 
                     <label for="ted">Tə (digər)</label>
                     <div class="input-group">
-                        <input type="text" id="ted">
+                        <input type="text" id="ted" disabled value="1">
                     </div>
                 </div>
             </div>
