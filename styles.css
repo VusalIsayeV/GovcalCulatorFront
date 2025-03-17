@@ -218,3 +218,8 @@ button[type="reset"]:hover {
         margin-bottom: 10px;
     }
 }
+
+
+#Rdiv,#Rlabelid{
+    display:none
+}

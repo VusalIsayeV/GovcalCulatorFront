@@ -176,7 +176,7 @@ function toggleInputs() {
                     const option = document.createElement('option');
                     option.value = group.id;
                     option.textContent = group.name;
-                    option.dataset.demoValue = group.id == 18 ? '2' : '1';
+                    option.dataset.demoValue = group.id == 18 ? '2' : (group.id == 20 || group.id == 22 ? '3' : '1');
                     userGroupSelect.appendChild(option);
                 });
                 console.log(data);
@@ -185,7 +185,7 @@ function toggleInputs() {
 
         document.getElementById("serviceType").addEventListener("change", function () {
             const selectedOption = document.querySelector('#serviceType option:checked');
-            if (selectedOption.getAttribute('data-demo-value') === "1") {
+            if (selectedOption.getAttribute('data-demo-value') === "1" || selectedOption.getAttribute('data-demo-value') === "3") {
                 document.getElementById("input1").style.display = 'block';
                 document.getElementById("input2").style.display = 'none';
 
@@ -395,6 +395,14 @@ function toggleInputs() {
                         })
                         .catch(error => console.error('Error:', error));
                 });
+                if (selectedOption.getAttribute('data-demo-value') === "3") {
+                    document.getElementById("Rdiv").style.display = 'block';
+                    document.getElementById("Rlabelid").style.display = 'block';
+                }
+                else{
+                    document.getElementById("Rdiv").style.display = 'none';
+                    document.getElementById("Rlabelid").style.display = 'none';
+                }
             }
             else if (selectedOption.getAttribute('data-demo-value') === "2") {
                 document.getElementById("input1").style.display = 'none';
