@@ -40,19 +40,19 @@
 
                 <label for="odenisDeyeri">Birdəfəlik ödəniş üzrə sabit dəyər kəmiyyəti</label>
                 <div class="input-group">
-                    <input type="text" id="odenisDeyeri" dataid="" disabled value="50">
+                    <input type="text" id="odenisDeyeri" dataid="" disabled value="Xidmət Növü Seçin">
                     <span class="emsal" id="b1Label">B1</span>
                 </div>
 
                 <label for="radioTezlikSayi">Radiotezliklərin sayı (ədəd)</label>
                 <div class="input-group">
-                    <input type="number" id="radioTezlikSayi" value="1">
+                    <input type="number" id="radioTezlikSayi" value="">
                     <span class="emsal" id="B2Label">B2</span>
                 </div>
 
                 <label for="zolaqEmsali">Radiotezlik kanalının zolaq genişliyini nəzərə alan əmsal</label>
                 <div class="input-group">
-                    <input type="text" id="zolaqEmsali" dataid="" disabled value="8">
+                    <input type="text" id="zolaqEmsali" dataid="" disabled value="Xidmət Növü Seçin">
                     <span class="emsal" id="b3Label">B3</span>
                 </div>
 
@@ -66,7 +66,7 @@
 
                 <label for="ehmiyyetlilikEmsali">Radiotezlik zolağının əhəmiyyətlilik əmsalı</label>
                 <div class="input-group">
-                    <input type="text" id="ehmiyyetlilikEmsali" dataid="" disabled value="">
+                    <input type="text" id="ehmiyyetlilikEmsali" dataid="" disabled value="Xidmət Növü Seçin">
                     <span class="emsal" id="b5Label">B5</span>
                 </div>
             </div>
@@ -92,7 +92,9 @@
 
                     <label for="odenisDeyeriM">Birdəfəlik ödəniş üzrə sabit dəyər kəmiyyəti</label>
                     <div class="input-group">
-                        <input type="text" id="odenisDeyeriM" dataid="" disabled value="secim edin">
+                        <select id="odenisDeyeriM">
+                            <option value="Xidmət Növü Seçin" disabled>Xidmət Növü Seçin</option>
+                        </select>
                         <span class="emsal" id="m1Label">M1</span>
                     </div>
 
@@ -104,7 +106,9 @@
 
                     <label for="zolaqGensliyi">Radiotezlik nominalının zolaq genişliyi, MHs</label>
                     <div class="input-group">
-                        <input type="text" id="zolaqGensliyi" dataid="" disabled value="50">
+                        <select id="zolaqGensliyi">
+                            <option value="Xidmət Növü Seçin" disabled>Xidmət Növü Seçin</option>
+                        </select>
                         <span class="emsal" id="m3Label">M3</span>
                     </div>
 
@@ -132,7 +136,9 @@
 
                     <label for="tezlikEmsali">Radiotezliklərə köklənmiş REV-lərin texnologiyasını nəzərə alan əmsal</label>
                     <div class="input-group">
-                        <input type="text" id="tezlikEmsali" dataid="" value="" disabled>
+                        <select id="tezlikEmsali">
+                            <option value="" disabled>Secim edin</option>
+                        </select>
                         <span class="emsal" id="m7Label">M7</span>
                     </div>
 

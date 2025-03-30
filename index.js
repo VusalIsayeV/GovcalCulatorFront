@@ -1,3 +1,4 @@
+const API = "https://api.calculator312.online"
 function toggleInputs() {
     var birdəfəlikOdenis = document.getElementById('birdəfəlikOdenis');
     var müddətliOdenis = document.getElementById('müddətliOdenis');
@@ -9,7 +10,7 @@ function toggleInputs() {
         fetchData();
         function fetchData() {
             // Fetch User Group data
-            fetch('http://127.0.0.1:8000/api/UserGroup')
+            fetch(`${API}/api/UserGroup`)
                 .then(response => response.json())
                 .then(data => {
                     const userGroupSelect = document.getElementById('istifadeciQrupu');
@@ -39,10 +40,11 @@ function toggleInputs() {
                 })
                 .catch(error => console.error('Error fetching User Group data:', error));
 
-            fetch('http://127.0.0.1:8000/api/ServiceType?payment_type_id=1')
+            fetch(`${API}/api/ServiceType?payment_type_id=1`)
                 .then(response => response.json())
                 .then(data => {
                     const userGroupSelect = document.getElementById('xidmetNovu');
+                    userGroupSelect.innerHTML = '<option value="" disabled selected>Xidmət Növünü Seçin</option>';
                     data.forEach(group => {
                         const option = document.createElement('option');
                         option.value = group.id;
@@ -53,10 +55,11 @@ function toggleInputs() {
                 })
                 .catch(error => console.error('Error fetching Service Type data:', error));
 
-            fetch('http://127.0.0.1:8000/api/B4')
+            fetch(`${API}/api/B4`)
                 .then(response => response.json())
                 .then(data => {
                     const userGroupSelect = document.getElementById('coğrafiEmsal');
+                    userGroupSelect.innerHTML = '<option value="" disabled selected>Ərazini seçin</option>';
                     data.forEach(group => {
                         const option = document.createElement('option');
                         option.value = group.id;
@@ -64,7 +67,6 @@ function toggleInputs() {
                         option.coefficient = group.coefficient;
                         userGroupSelect.appendChild(option);
                     });
-
                     // Add event listener for the select element
                     userGroupSelect.addEventListener('change', (event) => {
                         const selectedOption = event.target.options[event.target.selectedIndex];
@@ -88,7 +90,7 @@ function toggleInputs() {
         });
 
         function fetchDataServiceId(serviceTypeId) {
-            fetch(`http://127.0.0.1:8000/api/OneTimePaymentB1B3B5?service_type_id=${serviceTypeId}`)
+            fetch(`${API}/api/OneTimePaymentB1B3B5?service_type_id=${serviceTypeId}`)
                 .then(response => response.json())
                 .then(data => {
                     // Update B1, B3, B5 labels and their corresponding input fields
@@ -144,7 +146,7 @@ function toggleInputs() {
 
 
             // Send the POST request to the API
-            fetch('http://127.0.0.1:8000/api/OneTimePayment', {
+            fetch(`${API}/api/OneTimePayment`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -168,10 +170,11 @@ function toggleInputs() {
         müddətliOdenis.style.display = 'block';
         birdəfəlikOdenis.style.display = 'none';
 
-        fetch('http://127.0.0.1:8000/api/ServiceType?payment_type_id=2')
+        fetch(`${API}/api/ServiceType?payment_type_id=2`)
             .then(response => response.json())
             .then(data => {
                 const userGroupSelect = document.getElementById('serviceType');
+                userGroupSelect.innerHTML = '<option value="" disabled selected>Xidmət Növü Seçin</option>';
                 data.forEach(group => {
                     const option = document.createElement('option');
                     option.value = group.id;
@@ -183,7 +186,7 @@ function toggleInputs() {
             })
             .catch(error => console.error('Error fetching Service Type data:', error));
 
-        document.getElementById("serviceType").addEventListener("change", function () {
+        document.getElementById("serviceType").addEventListener("change", function (event) {
             const selectedOption = document.querySelector('#serviceType option:checked');
             if (selectedOption.getAttribute('data-demo-value') === "1" || selectedOption.getAttribute('data-demo-value') === "3") {
                 document.getElementById("input1").style.display = 'block';
@@ -191,10 +194,9 @@ function toggleInputs() {
 
 
                 fetchDataOther();
-                ////////////////////////////////////////
                 function fetchDataOther() {
                     // Fetch User Group data
-                    fetch('http://127.0.0.1:8000/api/UserGroup')
+                    fetch(`${API}/api/UserGroup`)
                         .then(response => response.json())
                         .then(data => {
                             const userGroupSelect = document.getElementById('istifadeciQrupuM');
@@ -222,10 +224,11 @@ function toggleInputs() {
                         })
                         .catch(error => console.error('Error fetching User Group data:', error));
 
-                    fetch('http://127.0.0.1:8000/api/B4')
+                    fetch(`${API}/api/B4`)
                         .then(response => response.json())
                         .then(data => {
                             const userGroupSelect = document.getElementById('coğrafiEmsalM');
+                            userGroupSelect.innerHTML = '<option value="" disabled selected>Zona seçin</option>';
                             data.forEach(group => {
                                 const option = document.createElement('option');
                                 option.value = group.id;
@@ -249,28 +252,58 @@ function toggleInputs() {
                         .catch(error => console.error('Error fetching B4 data:', error));
                 }
 
+                const serviceTypeOtherId = event.target.value;
+                fetchDataServiceOtherId(serviceTypeOtherId);
 
 
                 function fetchDataServiceOtherId(serviceTypeOtherId) {
-                    fetch(`http://127.0.0.1:8000/api/OtherTermPaymentM1M3M5M6M7?service_type_id=${serviceTypeOtherId}`)
+                    fetch(`${API}/api/OtherTermPaymentM1M3M5M6M7?service_type_id=${serviceTypeOtherId}`)
                         .then(response => response.json())
                         .then(data => {
                             const m1 = data.m1;
                             const m3 = data.m3;
                             const m6 = data.m6;
                             const m7 = data.m7;
+                            const r = data.r;
 
 
-                            document.getElementById('odenisDeyeriM').value = m1.name || "select";
-                            document.getElementById('m1Label').textContent = `M1 ${m1.coefficient || "select"}`;
-                            document.getElementById('odenisDeyeriM').setAttribute('dataid', m1.id || 'null');
+                            const m1Select = document.getElementById('odenisDeyeriM');
+                            m1Select.innerHTML = '<option value="">Seçin</option>'; // Mövcud seçimləri təmizləyirik
 
-                            document.getElementById('zolaqGensliyi').value = m3.name || "select";
-                            document.getElementById('m3Label').textContent = `M3 ${m3.coefficient || "select"}`;
-                            document.getElementById('zolaqGensliyi').setAttribute('dataid', m3.id || 'null');
+                            m1.forEach(option => {
+                                const optionElement = document.createElement('option');
+                                optionElement.value = option.id;
+                                optionElement.setAttribute('data-coefficient', option.coefficient); // Burada data-coefficient atributunu əlavə edirik
+                                optionElement.textContent = `${option.name}`;
+                                console.log(optionElement);
+
+                                m1Select.appendChild(optionElement);
+                            });
+                            m1Select.addEventListener('change', function () {
+                                const selectedOption = m1Select.options[m1Select.selectedIndex];
+                                const coefficient = selectedOption ? selectedOption.getAttribute('data-coefficient') : 0;
+                                document.getElementById('m1Label').textContent = `M1: ${coefficient}`;
+                            });
 
 
-                            // M6 üçün Select seçimlərini əlavə edirik
+                            const m3Select = document.getElementById('zolaqGensliyi');
+                            m3Select.innerHTML = '<option value="">Seçin</option>'; // Mövcud seçimləri təmizləyirik
+
+                            m3.forEach(option => {
+                                const optionElement = document.createElement('option');
+                                optionElement.value = option.id;
+                                optionElement.setAttribute('data-coefficient', option.coefficient); // Burada data-coefficient atributunu əlavə edirik
+                                optionElement.textContent = `${option.name}`;
+                                console.log(optionElement);
+
+                                m3Select.appendChild(optionElement);
+                            });
+                            m3Select.addEventListener('change', function () {
+                                const selectedOption = m3Select.options[m1Select.selectedIndex];
+                                const coefficient = selectedOption ? selectedOption.getAttribute('data-coefficient') : 0;
+                                document.getElementById('m3Label').textContent = `M3: ${coefficient}`;
+                            });
+
                             const m6Select = document.getElementById('tekanSahesi');
                             m6Select.innerHTML = '<option value="">Seçin</option>'; // Mövcud seçimləri təmizləyirik
 
@@ -279,6 +312,8 @@ function toggleInputs() {
                                 optionElement.value = option.id;
                                 optionElement.setAttribute('data-coefficient', option.coefficient); // Burada data-coefficient atributunu əlavə edirik
                                 optionElement.textContent = `${option.name}`;
+                                console.log(optionElement);
+
                                 m6Select.appendChild(optionElement);
                             });
                             m6Select.addEventListener('change', function () {
@@ -287,19 +322,53 @@ function toggleInputs() {
                                 document.getElementById('m6Label').textContent = `M6: ${coefficient}`;
                             });
 
-                            document.getElementById('tezlikEmsali').value = m7.name || "select";
-                            document.getElementById('m7Label').textContent = `M7 ${m7.coefficient || "select"}`;
-                            document.getElementById('tezlikEmsali').setAttribute('dataid', m7.id || 'null');
+
+                            const m7Select = document.getElementById('tezlikEmsali');
+                            m7Select.innerHTML = '<option value="">Seçin</option>'; // Mövcud seçimləri təmizləyirik
+
+                            m7.forEach(option => {
+                                const optionElement = document.createElement('option');
+                                optionElement.value = option.id;
+                                optionElement.setAttribute('data-coefficient', option.coefficient); // Burada data-coefficient atributunu əlavə edirik
+                                optionElement.textContent = `${option.name}`;
+                                console.log(optionElement);
+
+                                m7Select.appendChild(optionElement);
+                            });
+                            m7Select.addEventListener('change', function () {
+                                const selectedOption = m7Select.options[m7Select.selectedIndex];
+                                const coefficient = selectedOption ? selectedOption.getAttribute('data-coefficient') : 0;
+                                document.getElementById('m7Label').textContent = `M7: ${coefficient}`;
+                            });
+
+                            const rSelect = document.getElementById('R');
+                            rSelect.innerHTML = '<option value="">Seçin</option>'; // Mövcud seçimləri təmizləyirik
+
+                            r.forEach(option => {
+                                const optionElement = document.createElement('option');
+                                optionElement.value = option.id;
+                                optionElement.setAttribute('data-coefficient', option.coefficient); // Burada data-coefficient atributunu əlavə edirik
+                                optionElement.textContent = `${option.name}`;
+                                console.log(optionElement);
+
+                                rSelect.appendChild(optionElement);
+                            });
+                            rSelect.addEventListener('change', function () {
+                                const selectedOption = rSelect.options[rSelect.selectedIndex];
+                                const coefficient = selectedOption ? selectedOption.getAttribute('data-coefficient') : 0;
+                                document.getElementById('rLabel').textContent = `R: ${coefficient}`;
+                            });
+
 
                             console.log(data);
                         })
                         .catch(error => console.error('Error fetching OneTimePaymentB1B3B5 data:', error));
                 }
 
-                document.getElementById('serviceType').addEventListener('change', (event) => {
-                    const serviceTypeOtherId = event.target.value;
-                    fetchDataServiceOtherId(serviceTypeOtherId);
-                });
+                // document.getElementById('serviceType').addEventListener('change', (event) => {
+                //     const serviceTypeOtherId = event.target.value;
+                //     fetchDataServiceOtherId(serviceTypeOtherId);
+                // });
 
                 document.getElementById('revSayi').addEventListener('input', (event) => {
                     const inputValue = event.target.value;
@@ -325,7 +394,7 @@ function toggleInputs() {
                         return;
                     }
 
-                    fetch('http://127.0.0.1:8000/api/M5', {
+                    fetch(`${API}/api/M5`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -350,15 +419,16 @@ function toggleInputs() {
                 document.getElementById('submitBtn').addEventListener('click', () => {
                     const serviceType = document.getElementById('serviceType').value
                     const userQrup = document.getElementById('istifadeciQrupuM').value; // Get selected UserQrup (Service Type)
-                    const M1 = document.getElementById('odenisDeyeriM').getAttribute('dataid'); // Get B1 dataid
+                    const M1 = document.getElementById('odenisDeyeriM').value; // Get B1 dataid
                     const M2 = document.getElementById('revSayi').value; // Get B2 value (Radio Frequency Count)
-                    const M3 = document.getElementById('zolaqGensliyi').getAttribute('dataid'); // Get B3 dataid
+                    const M3 = document.getElementById('zolaqGensliyi').value; // Get B3 dataid
                     const M4 = document.getElementById('coğrafiEmsalM').value; // Get selected value from B4 dropdown
                     const M5 = document.getElementById('revSualandirici').value; // Get B5 dataid
                     const M6 = document.getElementById('tekanSahesi').value;
-                    const M7 = document.getElementById('tezlikEmsali').getAttribute('dataid');
+                    const M7 = document.getElementById('tezlikEmsali').value;
                     const M8 = document.getElementById('tarixAraligi').value;
-
+                    const rSelect = document.getElementById('R'); // R dropdown
+                    const rValue = rSelect ? rSelect.value : null; // Seçilmiş dəyəri götür
 
                     // Construct the data object to send in the POST request
                     const dataToSend = {
@@ -374,10 +444,13 @@ function toggleInputs() {
                         M8: M8
                     };
                     console.log(dataToSend);
+                    if (rValue) {
+                        dataToSend.R = rValue;
+                    }
 
 
                     // Send the POST request to the API
-                    fetch('http://127.0.0.1:8000/api/OtherTermPayment', {
+                    fetch(`${API}/api/OtherTermPayment`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -399,7 +472,7 @@ function toggleInputs() {
                     document.getElementById("Rdiv").style.display = 'block';
                     document.getElementById("Rlabelid").style.display = 'block';
                 }
-                else{
+                else {
                     document.getElementById("Rdiv").style.display = 'none';
                     document.getElementById("Rlabelid").style.display = 'none';
                 }
@@ -450,7 +523,7 @@ function toggleInputs() {
 
 
                     // Send the POST request to the API
-                    fetch('http://127.0.0.1:8000/api/SellularTermPayment', {
+                    fetch(`${API}/api/SellularTermPayment`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
