@@ -179,7 +179,7 @@ function toggleInputs() {
                     const option = document.createElement('option');
                     option.value = group.id;
                     option.textContent = group.name;
-                    option.dataset.demoValue = group.id == 18 ? '2' : (group.id == 20 || group.id == 22 ? '3' : '1');
+                    option.dataset.demoValue = group.id == 18 ? '2' : (group.id == 20 || group.id == 22 || group.id == 25 || group.id == 26 || group.id == 27 || group.id == 28 || group.id == 37 || group.id == 38 || group.id == 39 || group.id == 40 || group.id == 41 || group.id == 42 ? '3' : '1');
                     userGroupSelect.appendChild(option);
                 });
                 console.log(data);
@@ -380,7 +380,7 @@ function toggleInputs() {
                     const inputValue = event.target.value;
                     const m8Label = document.getElementById('m8Label');
 
-                    m8Label.textContent = `M8: ${(inputValue / 365).toFixed(2)}`;
+                    m8Label.textContent = `M8: ${(inputValue*30 / 365).toFixed(2)}`;
                 });
 
                 document.getElementById('revSualandirici').addEventListener('input', function () {
